@@ -2,95 +2,10 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>結婚啟事</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,400&family=Great+Vibes&family=Noto+Serif+TC:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
-<style>
-:root{--gold:#c4a35a;--gold-deep:#9a7a38;--ink:#3d4a5c}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{min-height:100%;background:#d7e4f0;color:var(--ink);font-family:"Noto Serif TC",serif}
-body{display:flex;justify-content:center}
-.stage{width:100%;max-width:430px;min-height:100vh;position:relative;overflow:hidden;background:linear-gradient(#e7f0f8,#d4e3f2)}
-.hint{position:absolute;left:0;right:0;bottom:28px;text-align:center;font-family:Jost,sans-serif;letter-spacing:.22em;font-size:11px;color:#6d7f93;z-index:5;transition:.4s}
-.envelope-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:4;transition:transform 1.2s cubic-bezier(.22,.7,.2,1),opacity .8s}
-.envelope{width:86%;aspect-ratio:3/4;position:relative;border-radius:8px;background:#e4eef7;box-shadow:0 18px 30px rgba(70,90,120,.22);cursor:pointer;overflow:hidden}
-.flap{position:absolute;left:0;right:0;top:0;height:46%;background:linear-gradient(#d5e4f2,#c5d6e8);clip-path:polygon(0 0,100% 0,50% 100%);z-index:2}
-.bloom{position:absolute;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#d7e6f4,#8aa7c6 60%,#6d8aab);opacity:.95}
-.seal{position:absolute;left:50%;top:42%;width:78px;height:78px;margin-left:-39px;border-radius:50%;z-index:3;
-background:radial-gradient(circle at 35% 30%, #e8d48a, #c4a35a 45%, #8d6a2e);
-box-shadow:0 6px 16px rgba(120,90,20,.35);display:flex;align-items:center;justify-content:center;
-color:#5c4316;font-family:"Cormorant Garamond",serif;font-size:15px;animation:pulse 2.4s ease-in-out infinite}
-@keyframes pulse{50%{transform:scale(1.05)}}
-.letter{position:absolute;inset:0;z-index:2;background:#eef4fa;overflow-y:auto;transform:translateY(110%);opacity:0;transition:transform 1.15s cubic-bezier(.22,.7,.2,1),opacity .6s .2s}
-.letter-inner{padding:28px 22px 64px;text-align:center}
-h1{font-family:"Great Vibes",cursive;font-size:42px;font-weight:400;color:#6a86a8;margin:6px 0 2px}
-.kicker{font-family:Jost,sans-serif;letter-spacing:.28em;font-size:10px;color:var(--gold-deep);text-transform:uppercase}
-.date{font-family:"Cormorant Garamond",serif;font-size:28px;color:#5d7390;margin:8px 0}
-.rule{width:46px;height:1px;background:var(--gold);margin:16px auto}
-.block{margin:22px 0}
-.label{font-family:Jost,sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep)}
-.time{font-size:18px;margin:4px 0}
-.place{font-size:15px}
-.addr{font-size:12px;color:#6d7f93}
-.btns{display:grid;gap:10px;margin-top:16px}
-a.btn{display:block;text-decoration:none;border:1px solid var(--gold);color:#7a6230;padding:12px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;background:#fff8}
-a.btn.solid{background:#8aa4c2;border-color:#8aa4c2;color:#fff}
-.hyd{font-size:13px;color:#6d7f93;line-height:1.9;margin-top:8px}
-footer{margin-top:28px;font-size:13px;color:#6d7f93;line-height:1.8}
-.opened .envelope-wrap{transform:translateY(-120%);opacity:0;pointer-events:none}
-.opened .letter{transform:translateY(0);opacity:1}
-.opened .hint{opacity:0}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Christine & Ki</title>
 </head>
 <body>
-<div class="stage" id="stage">
-  <div class="envelope-wrap" id="openBtn">
-    <div class="envelope">
-      <div class="bloom" style="left:-20px;top:-10px"></div>
-      <div class="bloom" style="right:-24px;bottom:10px;width:110px;height:110px"></div>
-      <div class="bloom" style="left:18px;bottom:-18px;width:70px;height:70px"></div>
-      <div class="flap"></div>
-      <div class="seal">C & L</div>
-    </div>
-  </div>
-  <p class="hint">輕觸金印 · 打開來信</p>
-  <article class="letter">
-    <div class="letter-inner">
-      <p class="kicker">A letter from the couple</p>
-      <h1>Our Wedding</h1>
-      <p class="kicker" style="margin-top:4px">結婚啟事</p>
-      <p class="date">10 · 10 · 2027</p>
-      <p class="hyd">繡球盛放的季節<br/>邀請你來見證我們的開始</p>
-      <div class="rule"></div>
-      <div class="block">
-        <p class="label">Ceremony · 證婚</p>
-        <p class="time">下午三時正</p>
-        <p class="place">聖約翰座堂</p>
-        <p class="addr">中環花園道 4–8 號</p>
-        <div class="btns"><a class="btn" href="https://maps.google.com/?q=St+John's+Cathedral+Hong+Kong" target="_blank" rel="noopener">開啟地圖</a></div>
-      </div>
-      <div class="block">
-        <p class="label">Banquet · 晚宴</p>
-        <p class="time">入席 六時三十分 · 開席 七時正</p>
-        <p class="place">香港君悅酒店 宴會廳</p>
-        <p class="addr">灣仔港灣道 1 號</p>
-        <div class="btns"><a class="btn" href="https://maps.google.com/?q=Grand+Hyatt+Hong+Kong" target="_blank" rel="noopener">開啟地圖</a></div>
-      </div>
-      <div class="block">
-        <p class="label">Kindly reply</p>
-        <p class="hyd">懇請於 2027 年 9 月 10 日前回覆</p>
-        <div class="btns"><a class="btn solid" href="https://docs.google.com/forms/" target="_blank" rel="noopener">RSVP 回覆出席</a></div>
-      </div>
-      <div class="block">
-        <p class="label">Good to know</p>
-        <p class="hyd">Dress code · Soft blue & champagne<br/>證婚：金鐘站 J 出口<br/>晚宴：灣仔站 A3 出口<br/>酒店提供賓客泊車<br/>場內設禮金箱 · 亦可 FPS / PayMe<br/>謝絕花籃</p>
-      </div>
-      <footer>感謝你願意來<br/>像繡球一樣，把祝福湊成一束<br/>With love</footer>
-    </div>
-  </article>
-</div>
-<script>
-document.getElementById('openBtn').addEventListener('click',()=>document.getElementById('stage').classList.add('opened'));
-</script>
+<p>See release files in conversation for full envelope site.</p>
 </body>
 </html>
