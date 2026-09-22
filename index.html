@@ -1,134 +1,96 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>陳大文 & 李小美 · The Wedding</title>
-  <meta name="description" content="陳大文 & 李小美 婚禮電子囍帖" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+TC:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --ivory: #f6f1e8;
-      --paper: #fbf8f2;
-      --gold: #b0894f;
-      --gold-deep: #8d6a38;
-      --ink: #3c342c;
-      --mute: #7a7168;
-      --line: rgba(176, 137, 79, 0.35);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { background: #e8e0d4; color: var(--ink); }
-    body { font-family: "Noto Serif TC", "Cormorant Garamond", serif; -webkit-font-smoothing: antialiased; }
-    .phone { max-width: 430px; margin: 0 auto; background: var(--paper); min-height: 100vh; box-shadow: 0 0 40px rgba(80, 60, 30, 0.12); }
-    .hero, .section { padding: 56px 28px 40px; text-align: center; }
-    .kicker { font-family: Jost, sans-serif; letter-spacing: 0.28em; font-size: 11px; color: var(--gold-deep); text-transform: uppercase; }
-    h1 { font-family: "Cormorant Garamond", "Noto Serif TC", serif; font-weight: 500; font-size: 34px; line-height: 1.35; margin: 18px 0 10px; color: var(--gold-deep); }
-    .amp { font-style: italic; font-weight: 400; opacity: .75; }
-    .date { font-family: Jost, sans-serif; letter-spacing: 0.18em; font-size: 12px; color: var(--mute); margin-top: 8px; }
-    .rule { width: 48px; height: 1px; background: var(--gold); margin: 22px auto; opacity: .7; }
-    .city { font-size: 15px; color: var(--gold-deep); letter-spacing: 0.4em; }
-    .countdown { display: flex; justify-content: center; gap: 14px; margin-top: 28px; }
-    .cd-item { min-width: 56px; }
-    .cd-num { font-family: "Cormorant Garamond", serif; font-size: 26px; color: var(--gold-deep); }
-    .cd-label { font-family: Jost, sans-serif; font-size: 9px; letter-spacing: 0.16em; color: var(--mute); text-transform: uppercase; }
-    .btns { display: grid; gap: 10px; margin-top: 28px; }
-    a.btn { display: block; text-decoration: none; border: 1px solid var(--gold); color: var(--gold-deep); padding: 13px 16px; font-family: Jost, sans-serif; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; }
-    a.btn.solid { background: var(--gold-deep); color: #fbf8f2; border-color: var(--gold-deep); }
-    .section { border-top: 1px solid var(--line); }
-    h2 { font-family: "Cormorant Garamond", "Noto Serif TC", serif; font-weight: 500; font-size: 26px; color: var(--gold-deep); margin-bottom: 8px; }
-    .block { margin: 26px 0; }
-    .label { font-family: Jost, sans-serif; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
-    .time { font-size: 20px; margin-bottom: 4px; }
-    .place { font-size: 16px; }
-    .addr { font-size: 13px; color: var(--mute); margin-top: 4px; line-height: 1.6; }
-    .note { font-size: 14px; color: var(--mute); line-height: 1.85; }
-    .list { text-align: left; max-width: 320px; margin: 18px auto 0; }
-    .list p { font-size: 14px; line-height: 1.75; margin: 10px 0; }
-    .list strong { font-weight: 600; color: var(--gold-deep); }
-    footer { padding: 36px 28px 56px; text-align: center; color: var(--mute); font-size: 13px; line-height: 1.8; }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>結婚啟事</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,400&family=Great+Vibes&family=Noto+Serif+TC:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--gold:#c4a35a;--gold-deep:#9a7a38;--ink:#3d4a5c}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:#d7e4f0;color:var(--ink);font-family:"Noto Serif TC",serif}
+body{display:flex;justify-content:center}
+.stage{width:100%;max-width:430px;min-height:100vh;position:relative;overflow:hidden;background:linear-gradient(#e7f0f8,#d4e3f2)}
+.hint{position:absolute;left:0;right:0;bottom:28px;text-align:center;font-family:Jost,sans-serif;letter-spacing:.22em;font-size:11px;color:#6d7f93;z-index:5;transition:.4s}
+.envelope-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:4;transition:transform 1.2s cubic-bezier(.22,.7,.2,1),opacity .8s}
+.envelope{width:86%;aspect-ratio:3/4;position:relative;border-radius:8px;background:#e4eef7;box-shadow:0 18px 30px rgba(70,90,120,.22);cursor:pointer;overflow:hidden}
+.flap{position:absolute;left:0;right:0;top:0;height:46%;background:linear-gradient(#d5e4f2,#c5d6e8);clip-path:polygon(0 0,100% 0,50% 100%);z-index:2}
+.bloom{position:absolute;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#d7e6f4,#8aa7c6 60%,#6d8aab);opacity:.95}
+.seal{position:absolute;left:50%;top:42%;width:78px;height:78px;margin-left:-39px;border-radius:50%;z-index:3;
+background:radial-gradient(circle at 35% 30%, #e8d48a, #c4a35a 45%, #8d6a2e);
+box-shadow:0 6px 16px rgba(120,90,20,.35);display:flex;align-items:center;justify-content:center;
+color:#5c4316;font-family:"Cormorant Garamond",serif;font-size:15px;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.05)}}
+.letter{position:absolute;inset:0;z-index:2;background:#eef4fa;overflow-y:auto;transform:translateY(110%);opacity:0;transition:transform 1.15s cubic-bezier(.22,.7,.2,1),opacity .6s .2s}
+.letter-inner{padding:28px 22px 64px;text-align:center}
+h1{font-family:"Great Vibes",cursive;font-size:42px;font-weight:400;color:#6a86a8;margin:6px 0 2px}
+.kicker{font-family:Jost,sans-serif;letter-spacing:.28em;font-size:10px;color:var(--gold-deep);text-transform:uppercase}
+.date{font-family:"Cormorant Garamond",serif;font-size:28px;color:#5d7390;margin:8px 0}
+.rule{width:46px;height:1px;background:var(--gold);margin:16px auto}
+.block{margin:22px 0}
+.label{font-family:Jost,sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep)}
+.time{font-size:18px;margin:4px 0}
+.place{font-size:15px}
+.addr{font-size:12px;color:#6d7f93}
+.btns{display:grid;gap:10px;margin-top:16px}
+a.btn{display:block;text-decoration:none;border:1px solid var(--gold);color:#7a6230;padding:12px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;background:#fff8}
+a.btn.solid{background:#8aa4c2;border-color:#8aa4c2;color:#fff}
+.hyd{font-size:13px;color:#6d7f93;line-height:1.9;margin-top:8px}
+footer{margin-top:28px;font-size:13px;color:#6d7f93;line-height:1.8}
+.opened .envelope-wrap{transform:translateY(-120%);opacity:0;pointer-events:none}
+.opened .letter{transform:translateY(0);opacity:1}
+.opened .hint{opacity:0}
+</style>
 </head>
 <body>
-  <div class="phone">
-    <section class="hero">
-      <p class="kicker">The Wedding of</p>
-      <h1>陳大文 <span class="amp">&</span> 李小美</h1>
-      <p class="date">10 · 10 · 2027 &nbsp; SATURDAY</p>
-      <div class="rule"></div>
-      <p class="city">香 港</p>
-      <div class="countdown" id="countdown">
-        <div class="cd-item"><div class="cd-num" id="d">—</div><div class="cd-label">Days</div></div>
-        <div class="cd-item"><div class="cd-num" id="h">—</div><div class="cd-label">Hrs</div></div>
-        <div class="cd-item"><div class="cd-num" id="m">—</div><div class="cd-label">Min</div></div>
-      </div>
-      <div class="btns">
-        <a class="btn solid" href="#rsvp">RSVP 回覆出席</a>
-        <a class="btn" href="#details">婚禮詳情</a>
-      </div>
-    </section>
-    <section class="section" id="details">
-      <p class="kicker">Schedule</p>
-      <h2>婚禮詳情</h2>
+<div class="stage" id="stage">
+  <div class="envelope-wrap" id="openBtn">
+    <div class="envelope">
+      <div class="bloom" style="left:-20px;top:-10px"></div>
+      <div class="bloom" style="right:-24px;bottom:10px;width:110px;height:110px"></div>
+      <div class="bloom" style="left:18px;bottom:-18px;width:70px;height:70px"></div>
+      <div class="flap"></div>
+      <div class="seal">C & L</div>
+    </div>
+  </div>
+  <p class="hint">輕觸金印 · 打開來信</p>
+  <article class="letter">
+    <div class="letter-inner">
+      <p class="kicker">A letter from the couple</p>
+      <h1>Our Wedding</h1>
+      <p class="kicker" style="margin-top:4px">結婚啟事</p>
+      <p class="date">10 · 10 · 2027</p>
+      <p class="hyd">繡球盛放的季節<br/>邀請你來見證我們的開始</p>
       <div class="rule"></div>
       <div class="block">
         <p class="label">Ceremony · 證婚</p>
         <p class="time">下午三時正</p>
         <p class="place">聖約翰座堂</p>
         <p class="addr">中環花園道 4–8 號</p>
-        <div class="btns">
-          <a class="btn" target="_blank" rel="noopener" href="https://maps.google.com/?q=St+John's+Cathedral+Hong+Kong">開啟地圖導航</a>
-        </div>
+        <div class="btns"><a class="btn" href="https://maps.google.com/?q=St+John's+Cathedral+Hong+Kong" target="_blank" rel="noopener">開啟地圖</a></div>
       </div>
       <div class="block">
         <p class="label">Banquet · 晚宴</p>
-        <p class="time">入席 晚上六時三十分</p>
-        <p class="time">開席 晚上七時正</p>
+        <p class="time">入席 六時三十分 · 開席 七時正</p>
         <p class="place">香港君悅酒店 宴會廳</p>
         <p class="addr">灣仔港灣道 1 號</p>
-        <div class="btns">
-          <a class="btn" target="_blank" rel="noopener" href="https://maps.google.com/?q=Grand+Hyatt+Hong+Kong">開啟地圖導航</a>
-        </div>
+        <div class="btns"><a class="btn" href="https://maps.google.com/?q=Grand+Hyatt+Hong+Kong" target="_blank" rel="noopener">開啟地圖</a></div>
       </div>
-    </section>
-    <section class="section" id="rsvp">
-      <p class="kicker">Kindly Reply</p>
-      <h2>RSVP 回覆</h2>
-      <div class="rule"></div>
-      <p class="note">懇請於 <strong>2027 年 9 月 10 日</strong> 前<br/>回覆出席人數、攜眷及飲食需要。</p>
-      <div class="btns">
-        <a class="btn solid" target="_blank" rel="noopener" href="https://docs.google.com/forms/">填寫回覆表單</a>
-        <a class="btn" href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ASUMMARY:陳大文 %26 李小美 婚禮%0ADTSTART:20271010T150000%0ADTEND:20271010T230000%0ALOCATION:香港君悅酒店%0AEND:VEVENT%0AEND:VCALENDAR">加入行事曆</a>
+      <div class="block">
+        <p class="label">Kindly reply</p>
+        <p class="hyd">懇請於 2027 年 9 月 10 日前回覆</p>
+        <div class="btns"><a class="btn solid" href="https://docs.google.com/forms/" target="_blank" rel="noopener">RSVP 回覆出席</a></div>
       </div>
-    </section>
-    <section class="section">
-      <p class="kicker">Good to Know</p>
-      <h2>實用資訊</h2>
-      <div class="rule"></div>
-      <div class="list">
-        <p><strong>Dress Code</strong><br/>Semi-formal · 建議米色 / 香檳金 / 柔和色調</p>
-        <p><strong>交通</strong><br/>證婚：金鐘站 J 出口，步行約 8 分鐘<br/>晚宴：灣仔站 A3 出口</p>
-        <p><strong>泊車</strong><br/>酒店提供賓客泊車，詳情歡迎向接待查詢</p>
-        <p><strong>聯絡</strong><br/>兄弟團大總管 9123 4567</p>
-        <p><strong>心意</strong><br/>場內設有禮金箱，亦可使用 FPS / PayMe<br/>謝絕花籃</p>
+      <div class="block">
+        <p class="label">Good to know</p>
+        <p class="hyd">Dress code · Soft blue & champagne<br/>證婚：金鐘站 J 出口<br/>晚宴：灣仔站 A3 出口<br/>酒店提供賓客泊車<br/>場內設禮金箱 · 亦可 FPS / PayMe<br/>謝絕花籃</p>
       </div>
-    </section>
-    <footer>
-      感謝你來見證我們的開始。<br/>With love,<br/>大文 & 小美
-    </footer>
-  </div>
-  <script>
-    const target = new Date("2027-10-10T15:00:00+08:00").getTime();
-    function tick() {
-      const now = Date.now();
-      let s = Math.max(0, Math.floor((target - now) / 1000));
-      document.getElementById("d").textContent = Math.floor(s / 86400);
-      document.getElementById("h").textContent = Math.floor((s % 86400) / 3600);
-      document.getElementById("m").textContent = Math.floor((s % 3600) / 60);
-    }
-    tick();
-    setInterval(tick, 30000);
-  </script>
+      <footer>感謝你願意來<br/>像繡球一樣，把祝福湊成一束<br/>With love</footer>
+    </div>
+  </article>
+</div>
+<script>
+document.getElementById('openBtn').addEventListener('click',()=>document.getElementById('stage').classList.add('opened'));
+</script>
 </body>
 </html>
