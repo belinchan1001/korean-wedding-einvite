@@ -100,14 +100,34 @@ if (side === 'groom') {
   tag.textContent = '女方親友請柬';
 }
 var audio = document.getElementById('bgm');
-audio.volume = 0.42;
+var TARGET = 0.22;
 var playing = false;
+var fadeTimer = null;
 var musicBtn = document.getElementById('musicBtn');
+audio.volume = 0;
 function setIcon(){ musicBtn.textContent = playing ? '\u266a' : '\u2715'; }
-function playMusic(){
-  audio.play().then(function(){ playing = true; setIcon(); }).catch(function(){ playing = false; setIcon(); });
+function stopFade(){ if (fadeTimer) { clearInterval(fadeTimer); fadeTimer = null; } }
+function fadeTo(target, ms, done){
+  stopFade();
+  var start = audio.volume;
+  var t0 = Date.now();
+  fadeTimer = setInterval(function(){
+    var p = Math.min(1, (Date.now() - t0) / ms);
+    audio.volume = start + (target - start) * p;
+    if (p >= 1) { stopFade(); if (done) done(); }
+  }, 50);
 }
-function pauseMusic(){ audio.pause(); playing = false; setIcon(); }
+function playMusic(){
+  audio.volume = 0;
+  audio.play().then(function(){
+    playing = true;
+    setIcon();
+    fadeTo(TARGET, 4000);
+  }).catch(function(){ playing = false; setIcon(); });
+}
+function pauseMusic(){
+  fadeTo(0, 600, function(){ audio.pause(); playing = false; setIcon(); });
+}
 musicBtn.addEventListener('click', function(e){
   e.stopPropagation();
   if (playing) pauseMusic(); else playMusic();
