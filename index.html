@@ -100,22 +100,30 @@ if (side === 'groom') {
   tag.textContent = '女方親友請柬';
 }
 var audio = document.getElementById('bgm');
-var TARGET = 0.12;
+var TARGET = 0.06;
 var playing = false;
 var fadeTimer = null;
+var holdTimer = null;
 var musicBtn = document.getElementById('musicBtn');
 audio.volume = 0;
 function setIcon(){ musicBtn.textContent = playing ? '\u266a' : '\u2715'; }
-function stopFade(){ if (fadeTimer) { clearInterval(fadeTimer); fadeTimer = null; } }
+function stopFade(){
+  if (fadeTimer) { clearInterval(fadeTimer); fadeTimer = null; }
+  if (holdTimer) { clearTimeout(holdTimer); holdTimer = null; }
+}
 function fadeTo(target, ms, done){
-  stopFade();
+  if (fadeTimer) { clearInterval(fadeTimer); fadeTimer = null; }
   var start = audio.volume;
   var t0 = Date.now();
   fadeTimer = setInterval(function(){
     var p = Math.min(1, (Date.now() - t0) / ms);
     audio.volume = Math.max(0, Math.min(1, start + (target - start) * p));
-    if (p >= 1) { stopFade(); if (done) done(); }
-  }, 50);
+    if (p >= 1) {
+      clearInterval(fadeTimer);
+      fadeTimer = null;
+      if (done) done();
+    }
+  }, 40);
 }
 function playMusic(){
   stopFade();
@@ -123,11 +131,14 @@ function playMusic(){
   audio.play().then(function(){
     playing = true;
     setIcon();
-    fadeTo(TARGET, 9000);
+    holdTimer = setTimeout(function(){
+      fadeTo(TARGET, 7000);
+    }, 1800);
   }).catch(function(){ playing = false; setIcon(); });
 }
 function pauseMusic(){
-  fadeTo(0, 800, function(){ audio.pause(); playing = false; setIcon(); });
+  stopFade();
+  fadeTo(0, 700, function(){ audio.pause(); playing = false; setIcon(); });
 }
 musicBtn.addEventListener('click', function(e){
   e.stopPropagation();
