@@ -38,10 +38,12 @@ footer{margin-top:8px;font-size:13px;color:var(--mute);line-height:1.9}
 .cd-num{font-size:26px;color:#5d7390}
 .cd-label{font-family:Jost,sans-serif;font-size:9px;letter-spacing:.16em;color:var(--mute);text-transform:uppercase}
 .side-tag{display:none;margin:0 auto 10px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.16em;color:#7a6230;border:1px solid #c4a35a;padding:6px 12px;background:rgba(255,255,255,.55)}
+.music{position:absolute;top:14px;right:14px;z-index:8;width:42px;height:42px;border:1px solid #c4a35a;border-radius:50%;background:rgba(255,255,255,.75);color:#7a6230;font-size:16px;cursor:pointer}
 </style>
 </head>
 <body>
 <div class="stage" id="stage">
+  <button class="music" id="musicBtn" type="button" aria-label="music">♪</button>
   <div class="wrap" id="openBtn">
     <div class="env"><img src="/envelope.jpg" alt="請柬信封"/></div>
   </div>
@@ -82,6 +84,7 @@ footer{margin-top:8px;font-size:13px;color:var(--mute);line-height:1.9}
     </div>
   </article>
 </div>
+<audio id="bgm" src="/bgm.mp3" loop preload="auto"></audio>
 <script>
 var path = (location.pathname || '').replace(/\/+$/,'');
 var q = new URLSearchParams(location.search).get('side');
@@ -96,8 +99,22 @@ if (side === 'groom') {
   tag.style.display = 'inline-block';
   tag.textContent = '女方親友請柬';
 }
+var audio = document.getElementById('bgm');
+audio.volume = 0.42;
+var playing = false;
+var musicBtn = document.getElementById('musicBtn');
+function setIcon(){ musicBtn.textContent = playing ? '\u266a' : '\u2715'; }
+function playMusic(){
+  audio.play().then(function(){ playing = true; setIcon(); }).catch(function(){ playing = false; setIcon(); });
+}
+function pauseMusic(){ audio.pause(); playing = false; setIcon(); }
+musicBtn.addEventListener('click', function(e){
+  e.stopPropagation();
+  if (playing) pauseMusic(); else playMusic();
+});
 document.getElementById('openBtn').addEventListener('click', function(){
   document.getElementById('stage').classList.add('opened');
+  playMusic();
 });
 var t = new Date('2026-12-20T12:00:00+08:00').getTime();
 function tick(){
