@@ -11,10 +11,10 @@
 html,body{min-height:100%;background:#d9e4f0;font-family:"Noto Serif TC",serif;color:var(--ink)}
 body{display:flex;justify-content:center}
 .stage{width:100%;max-width:430px;min-height:100vh;position:relative;overflow:hidden;background:linear-gradient(180deg,#efe8f4,#d7e4f2)}
-.hint{position:absolute;left:0;right:0;bottom:24px;z-index:6;text-align:center;font-family:Jost,sans-serif;letter-spacing:.18em;font-size:13px;color:#5d6f82}
 .wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:5;transition:transform 1.15s cubic-bezier(.22,.7,.2,1),opacity .7s}
-.env{width:88%;cursor:pointer;filter:drop-shadow(0 16px 26px rgba(70,90,120,.22))}
+.env{width:88%;position:relative;cursor:pointer;filter:drop-shadow(0 16px 26px rgba(70,90,120,.22))}
 .env img{width:100%;display:block;border-radius:10px}
+.hint{position:absolute;left:50%;top:53.5%;transform:translate(-50%,0);width:42%;margin:0;text-align:center;font-family:"Noto Serif TC",serif;letter-spacing:.16em;font-size:12px;line-height:1.55;color:#7a6230;text-shadow:0 1px 0 rgba(255,255,255,.85);pointer-events:none;z-index:2}
 .letter{position:absolute;inset:0;z-index:3;background:#f3f6fb;overflow-y:auto;-webkit-overflow-scrolling:touch;transform:translateY(108%);opacity:0;transition:transform 1.2s .05s,opacity .55s .15s}
 .inner{padding:22px 16px 80px;text-align:center}
 .kicker{font-family:Jost,sans-serif;letter-spacing:.26em;font-size:10px;color:var(--gold);text-transform:uppercase}
@@ -33,7 +33,6 @@ a.solid{background:#8aa7c4;border-color:#8aa7c4;color:#fff}
 footer{margin-top:8px;font-size:13px;color:var(--mute);line-height:1.9}
 .opened .wrap{transform:translateY(-118%);opacity:0;pointer-events:none}
 .opened .letter{transform:none;opacity:1}
-.opened .hint{opacity:0}
 .cd{display:flex;justify-content:center;gap:16px;margin:12px 0}
 .cd-num{font-size:26px;color:#5d7390}
 .cd-label{font-family:Jost,sans-serif;font-size:9px;letter-spacing:.16em;color:var(--mute);text-transform:uppercase}
@@ -45,9 +44,11 @@ footer{margin-top:8px;font-size:13px;color:var(--mute);line-height:1.9}
 <div class="stage" id="stage">
   <button class="music" id="musicBtn" type="button" aria-label="music">♪</button>
   <div class="wrap" id="openBtn">
-    <div class="env"><img src="/envelope.jpg" alt="請柬信封"/></div>
+    <div class="env">
+      <img src="/envelope.jpg" alt="請柬信封"/>
+      <p class="hint">輕觸金印<br/>打開請柬</p>
+    </div>
   </div>
-  <p class="hint">輕觸金印，打開請柬</p>
   <article class="letter">
     <div class="inner">
       <p class="side-tag" id="sideTag"></p>
