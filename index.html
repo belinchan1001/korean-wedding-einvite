@@ -42,7 +42,7 @@ footer{margin-top:8px;font-size:13px;color:var(--mute);line-height:1.9}
 <body>
 <div class="stage" id="stage">
   <div class="wrap" id="openBtn">
-    <div class="env"><img id="img-envelope" alt="請柬信封"/></div>
+    <div class="env"><img src="envelope.jpg" alt="請柬信封"/></div>
   </div>
   <p class="hint">輕觸金印，打開請柬</p>
   <article class="letter">
@@ -50,7 +50,7 @@ footer{margin-top:8px;font-size:13px;color:var(--mute);line-height:1.9}
       <p class="kicker">The Wedding of</p>
       <h1>Christine & Ki</h1>
       <p class="cn">簡沛琪　&　陳頌祺</p>
-      <img class="full" id="img-cover" alt="Christine and Ki"/>
+      <img class="full" src="cover.jpg" alt="Christine and Ki"/>
       <div class="cd">
         <div><div class="cd-num" id="d">—</div><div class="cd-label">Days</div></div>
         <div><div class="cd-num" id="h">—</div><div class="cd-label">Hrs</div></div>
@@ -58,7 +58,7 @@ footer{margin-top:8px;font-size:13px;color:var(--mute);line-height:1.9}
       </div>
       <p class="poem">繡球盛放的冬日<br/>我們想把祝福凑成一束<br/>邀請你來共享這場午宴</p>
       <div class="rule"></div>
-      <img class="full" id="img-details" alt="婚禮詳情"/>
+      <img class="full" src="details.jpg" alt="婚禮詳情"/>
       <div class="block">
         <p class="label">Luncheon</p>
         <p class="time">入席 上午十一時三十分</p>
@@ -75,21 +75,12 @@ footer{margin-top:8px;font-size:13px;color:var(--mute);line-height:1.9}
           <a class="btn" href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ASUMMARY:Christine %26 Ki Wedding%0ADTSTART:20261220T113000%0ADTEND:20261220T160000%0AEND:VEVENT%0AEND:VCALENDAR">加入行事曆</a>
         </div>
       </div>
-      <img class="full" id="img-cats" alt="Thank you"/>
+      <img class="full" src="cats-back.jpg" alt="Thank you"/>
       <footer>感謝你願意來<br/>With love, 簡沛琪 & 陳頌祺</footer>
     </div>
   </article>
 </div>
-<script src="envelope.js"></script>
-<script src="cover.js"></script>
-<script src="details.js"></script>
-<script src="cats.js"></script>
 <script>
-function bind(id, key){ var el=document.getElementById(id); if(el && window[key]) el.src=window[key]; }
-bind('img-envelope','IMG_ENVELOPE');
-bind('img-cover','IMG_COVER');
-bind('img-details','IMG_DETAILS');
-bind('img-cats','IMG_CATS');
 document.getElementById('openBtn').addEventListener('click', function(){
   document.getElementById('stage').classList.add('opened');
 });
