@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/groom", "destination": "/index.html" },
+    { "source": "/bride", "destination": "/index.html" },
+    { "source": "/groom/", "destination": "/index.html" },
+    { "source": "/bride/", "destination": "/index.html" }
+  ]
+}
