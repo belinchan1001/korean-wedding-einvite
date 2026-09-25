@@ -63,6 +63,20 @@ footer{margin-top:8px;font-size:13px;color:var(--mute);line-height:1.9}
 @media (prefers-reduced-motion:reduce){
   .petal,.flake,.seal-glow,.hint,.music.on::before{animation:none!important}
   .seal-glow{opacity:.7}
+  .spark,.spark.on{opacity:1!important;animation:none!important;text-shadow:none!important}
+}
+.spark.on{animation:ink-in 1.15s ease both;animation-delay:var(--d,0ms)}
+@keyframes ink-in{
+  0%{opacity:0;text-shadow:0 0 0 rgba(196,163,90,0)}
+  28%{opacity:1;text-shadow:0 0 14px rgba(232,206,140,.95),0 0 3px rgba(255,248,230,.95)}
+  100%{opacity:1;text-shadow:0 0 0 rgba(196,163,90,0)}
+}
+.motes{position:absolute;inset:0;pointer-events:none;z-index:4;overflow:hidden}
+.motes i{position:absolute;width:5px;height:5px;border-radius:50%;opacity:0;animation:mote 1.8s ease-out forwards}
+@keyframes mote{
+  0%{opacity:0;transform:translateY(8px) scale(.4)}
+  25%{opacity:.9}
+  100%{opacity:0;transform:translateY(-46px) scale(1)}
 }
 </style>
 </head>
@@ -222,6 +236,66 @@ function burst(){
     box.appendChild(flake);
   }
 }
+var MAGIC = new URLSearchParams(location.search).get("magic") === "1" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function splitInk(el){
+  if (!el || el.dataset.ink) return;
+  el.dataset.ink = "1";
+  var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+    acceptNode: function(node){
+      if (!node.nodeValue) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  var nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(function(node){
+    var frag = document.createDocumentFragment();
+    var text = node.nodeValue;
+    for (var i = 0; i < text.length; i++) {
+      var ch = text.charAt(i);
+      if (ch === "\n") { frag.appendChild(document.createTextNode(ch)); continue; }
+      var s = document.createElement("span");
+      s.className = "spark";
+      s.textContent = ch === " " ? "\u00a0" : ch;
+      frag.appendChild(s);
+    }
+    node.parentNode.replaceChild(frag, node);
+  });
+}
+function playInk(el, start){
+  splitInk(el);
+  var sparks = el.querySelectorAll(".spark");
+  var delay = start || 0;
+  sparks.forEach(function(s){
+    s.style.setProperty("--d", delay + "ms");
+    s.classList.add("on");
+    if (s.textContent && s.textContent !== "\u00a0") delay += 34;
+  });
+  return delay;
+}
+function motes(){
+  var box = document.createElement("div");
+  box.className = "motes";
+  box.setAttribute("aria-hidden", "true");
+  var colors = ["#e7d39a", "#fff8e6", "#d7c4e4", "#c4a35a", "#f3e7c2"];
+  for (var i = 0; i < 16; i++) {
+    var dot = document.createElement("i");
+    dot.style.left = (6 + Math.random() * 88) + "%";
+    dot.style.top = (4 + Math.random() * 42) + "%";
+    dot.style.animationDelay = (Math.random() * 0.7) + "s";
+    dot.style.background = colors[i % colors.length];
+    box.appendChild(dot);
+  }
+  document.querySelector(".letter").appendChild(box);
+}
+function settleInk(){
+  document.querySelectorAll(".spark").forEach(function(s){
+    s.style.opacity = "1";
+    s.style.animation = "none";
+    s.style.textShadow = "none";
+  });
+}
+if (MAGIC) playInk(document.querySelector(".hint"), 180);
 document.getElementById("openBtn").addEventListener("click", function(){
   if (opened) return;
   opened = true;
@@ -229,6 +303,17 @@ document.getElementById("openBtn").addEventListener("click", function(){
   document.getElementById("seal").classList.add("flash");
   document.getElementById("stage").classList.add("opened");
   playMusic();
+  if (!MAGIC) return;
+  motes();
+  setTimeout(function(){
+    var cursor = 80;
+    var nodes = document.querySelectorAll(".letter .side-tag, .letter .kicker, .letter h1, .letter .cn, .letter .cd-num, .letter .cd-label, .letter .poem, .letter .label, .letter .time, .letter .note, .letter footer");
+    nodes.forEach(function(el){
+      if (el.offsetParent === null && el.id === "sideTag") return;
+      cursor = playInk(el, cursor) + 120;
+    });
+  }, 420);
+  setTimeout(settleInk, 14000);
 });
 var t = new Date("2026-12-20T12:00:00+08:00").getTime();
 function tick(){
