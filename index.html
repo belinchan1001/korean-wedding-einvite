@@ -252,52 +252,55 @@ function burst(){
 var MAGIC = new URLSearchParams(location.search).get("magic") === "1" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 function runSpell(svg){
   var jobs = [];
-  var t = 160;
+  var cursor = 160;
   svg.querySelectorAll(".pen").forEach(function(path){
     var ms = +path.getAttribute("data-ms") || 900;
-    jobs.push({path: path, ms: ms, delay: t});
-    t += ms + 28;
+    path.style.transition = "none";
+    path.style.strokeDashoffset = "1";
+    jobs.push({path: path, ms: ms, delay: cursor, len: path.getTotalLength()});
+    cursor += ms + (path.classList.contains("han") ? 18 : 36);
   });
   var tip = svg.querySelector(".pen-tip");
-  jobs.forEach(function(job){
-    job.path.style.transition = "stroke-dashoffset " + job.ms + "ms linear " + job.delay + "ms";
-    job.path.style.strokeDashoffset = "0";
-    if (job.path.classList.contains("latin")) {
-      setTimeout(function(){ job.path.setAttribute("fill", "url(#spellGold)"); }, job.delay + job.ms - 30);
-    }
-  });
   var start = performance.now();
   function frame(now){
     var elapsed = now - start;
     var active = null;
     for (var i = 0; i < jobs.length; i++) {
       var job = jobs[i];
-      if (elapsed >= job.delay && elapsed <= job.delay + job.ms) { active = job; break; }
+      var p = (elapsed - job.delay) / job.ms;
+      if (p < 1 && job.filled) job.filled = false;
+      if (p <= 0) {
+        job.path.style.strokeDashoffset = "1";
+        continue;
+      }
+      if (p >= 1) {
+        job.path.style.strokeDashoffset = "0";
+        if (job.path.classList.contains("latin") && !job.filled) {
+          job.filled = true;
+          job.path.setAttribute("fill", "url(#spellGold)");
+        }
+        continue;
+      }
+      if (job.path.classList.contains("latin")) job.path.setAttribute("fill", "none");
+      job.path.style.strokeDashoffset = String(1 - p);
+      active = job;
+      active.p = p;
     }
     if (active && tip) {
-      var p = (elapsed - active.delay) / active.ms;
-      if (p < 0) p = 0;
-      if (p > 1) p = 1;
-      var len = active.path.getTotalLength();
-      var pt = active.path.getPointAtLength(len * p);
+      var pt = active.path.getPointAtLength(active.len * active.p);
       tip.setAttribute("cx", pt.x);
       tip.setAttribute("cy", pt.y);
       tip.style.opacity = "1";
     } else if (tip) {
       tip.style.opacity = "0";
     }
-    if (elapsed < t + 500) requestAnimationFrame(frame);
-    else svg.classList.add("done");
+    if (elapsed < cursor + 240) requestAnimationFrame(frame);
+    else {
+      svg.classList.add("done");
+      if (tip) tip.style.opacity = "0";
+    }
   }
   requestAnimationFrame(frame);
-  setTimeout(function(){
-    svg.classList.add("done");
-    if (tip) tip.style.opacity = "0";
-    svg.querySelectorAll(".pen").forEach(function(path){
-      path.style.strokeDashoffset = "0";
-      if (path.classList.contains("latin")) path.setAttribute("fill", "url(#spellGold)");
-    });
-  }, t + 700);
 }
 document.getElementById("openBtn").addEventListener("click", function(){
   if (opened) return;
