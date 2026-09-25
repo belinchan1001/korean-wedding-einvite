@@ -309,8 +309,14 @@ document.getElementById("openBtn").addEventListener("click", function(){
     var cursor = 80;
     var nodes = document.querySelectorAll(".letter .side-tag, .letter .kicker, .letter h1, .letter .cn, .letter .cd-num, .letter .cd-label, .letter .poem, .letter .label, .letter .time, .letter .note, .letter footer");
     nodes.forEach(function(el){
-      if (el.offsetParent === null && el.id === "sideTag") return;
-      cursor = playInk(el, cursor) + 120;
+      if (el.id === "sideTag" && el.style.display !== "inline-block") return;
+      if (el.tagName === "H1") {
+        el.style.animation = "ink-in 1.45s ease both";
+        el.style.animationDelay = cursor + "ms";
+        cursor += 780;
+        return;
+      }
+      cursor = playInk(el, cursor) + 90;
     });
   }, 420);
   setTimeout(settleInk, 14000);
