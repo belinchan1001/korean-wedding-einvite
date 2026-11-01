@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Christine & Ki Wedding//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:christine-ki-wedding-20261220@chaiquote
+DTSTAMP:20261101T140000Z
+DTSTART:20261220T030000Z
+DTEND:20261220T083000Z
+SUMMARY:Christine & Ki Wedding · 簡沛琪 & 陳頌祺
+DESCRIPTION:證婚儀式 上午十一時正\n入席 上午十一時三十分\n開席 下午十二時三十分\n\n千禧新世界香港酒店\n主席廳（M樓）
+LOCATION:千禧新世界香港酒店 主席廳（M樓），尖沙咀東部麼地道72號
+URL:https://christine-ki-invite-songbill.vercel.app
+END:VEVENT
+END:VCALENDAR
