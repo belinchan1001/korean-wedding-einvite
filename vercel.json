@@ -4,5 +4,14 @@
     { "source": "/bride", "destination": "/index.html" },
     { "source": "/groom/", "destination": "/index.html" },
     { "source": "/bride/", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/wedding.ics",
+      "headers": [
+        { "key": "Content-Type", "value": "text/calendar; charset=utf-8" },
+        { "key": "Content-Disposition", "value": "inline; filename=\"Christine-Ki-Wedding.ics\"" }
+      ]
+    }
   ]
 }
