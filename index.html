@@ -34,7 +34,12 @@ h1{font-family:"Great Vibes",cursive;font-weight:400;font-size:40px;line-height:
 .block{margin:22px 0}
 .label{font-family:Jost,sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
 .time{font-size:18px;margin:3px 0}
+.sched{width:max-content;max-width:100%;margin:12px auto 16px;text-align:left}
+.sched p{display:grid;grid-template-columns:8.6em auto;column-gap:14px;align-items:baseline;margin:7px 0;font-size:16px}
+.sched span{color:#5d7390}
+.place{font-size:16px;margin:2px 0 4px}
 .note{font-size:14px;color:var(--mute);line-height:1.85}
+.note.gap{margin-top:12px}
 .btns{display:grid;gap:10px;margin-top:14px}
 a.btn{display:block;text-decoration:none;border:1px solid #c4a35a;color:#7a6230;padding:13px 14px;font-family:Jost,sans-serif;font-size:11px;letter-spacing:.14em;background:rgba(255,255,255,.55)}
 a.solid{background:#8aa7c4;border-color:#8aa7c4;color:#fff}
@@ -94,11 +99,14 @@ footer{margin-top:8px;font-size:13px;color:var(--mute);line-height:1.9}
       <img class="full" src="/details.jpg" alt="婚禮詳情"/>
       <div class="block">
         <p class="label">Luncheon</p>
-        <p class="time">招呼親友 上午十一時正</p>
-        <p class="time">證婚儀式 上午十一時三十分</p>
-        <p class="time">開席 下午十二時三十分</p>
-        <p class="time">千禧新世界香港酒店</p>
-        <p class="note">主席廳（M樓）· 中式宴會<br/>九龍尖沙咀東部麼地道72號<br/><br/>上午十一時開始招呼親友，十一時三十分進行證婚儀式<br/><br/><strong>交通建議：</strong>由紅磡站出去步行約 5–8 分鐘最方便（距離最近）</p>
+        <div class="sched">
+          <p><span>上午十一時正</span>招呼親友</p>
+          <p><span>上午十一時三十分</span>證婚儀式</p>
+          <p><span>下午十二時三十分</span>開席</p>
+        </div>
+        <p class="place">千禧新世界香港酒店</p>
+        <p class="note">主席廳（M樓）· 中式宴會<br/>九龍尖沙咀東部麼地道72號</p>
+        <p class="note gap"><strong>交通建議：</strong>由紅磡站出去步行約 5–8 分鐘最方便（距離最近）</p>
         <div class="btns"><a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=New+World+Millennium+Hong+Kong+Hotel,+72+Mody+Road,+Tsim+Sha+Tsui,+Hong+Kong" target="_blank" rel="noopener">開啟地圖導航</a><a class="btn" href="/wedding.ics">加入行事曆</a></div>
       </div>
       <img class="full" src="/cats-back.jpg" alt="Thank you"/>
