@@ -184,6 +184,18 @@ function pauseMusic(){
   stopFade();
   fadeTo(0, 700, function(){ audio.pause(); playing = false; setIcon(); });
 }
+function stopMusicNow(){
+  stopFade();
+  audio.pause();
+  audio.volume = 0;
+  playing = false;
+  setIcon();
+}
+document.addEventListener("visibilitychange", function(){
+  if (document.hidden) stopMusicNow();
+});
+window.addEventListener("pagehide", stopMusicNow);
+document.addEventListener("freeze", stopMusicNow);
 musicBtn.addEventListener("click", function(e){
   e.stopPropagation();
   if (playing) pauseMusic(); else playMusic();
